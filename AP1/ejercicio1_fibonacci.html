@@ -16,7 +16,7 @@
 //
 // RESULTADO ESPERADO:
 //   Serie: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
-//   Número de términos: 10c
+//   Número de términos: 10
 //   Números pares: 4
 //
 // TAREA: ejecuta el programa, usa la consola/depurador,
@@ -24,11 +24,23 @@
 // (sintaxis, ejecución o lógica).
 // ============================================================
 
+/*
+ * ERRORES ENCONTRADOS Y CORREGIDOS:
+ *
+ * 1) Línea 30 (código original) — tipo: LÓGICA
+ *    Error: for (let i = 2; i <= n; i++) generaba 11 términos en vez de 10.
+ *    Corrección: cambiar a i < n.
+ *
+ * 2) Línea 31 (código original) — tipo: LÓGICA
+ *    Error: serie[i-1] + serie[i-3]. En i=2, serie[-1] es undefined → NaN.
+ *    Corrección: serie[i - 1] + serie[i - 2].
+ */
+
 function fibonacci(n) {
   let serie = [0, 1];
 
-  for (let i = 2; i <= n; i++) {
-    serie.push(serie[i - 1] + serie[i - 3]);
+  for (let i = 2; i < n; i++) {
+    serie.push(serie[i - 1] + serie[i - 2]);
   }
 
   return serie;
