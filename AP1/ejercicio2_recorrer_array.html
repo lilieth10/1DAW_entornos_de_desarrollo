@@ -25,16 +25,36 @@
 // de las DevTools para seguir el valor de las variables.
 // ============================================================
 
+/*
+ * ERRORES ENCONTRADOS Y CORREGIDOS:
+ *
+ * 1) Línea 29 (código original) — tipo: LÓGICA
+ *    Error: let total = ""; += concatenaba strings en vez de sumar.
+ *    Corrección: let total = 0;
+ *
+ * 2) Línea 30 (código original) — tipo: LÓGICA
+ *    Error: for (i = 1; i <= array.length) omitía el 1.º y leía undefined.
+ *    Corrección: for (let i = 0; i < array.length; i++)
+ *
+ * 3) Línea 37 (código original) — tipo: LÓGICA
+ *    Error: let max = 0; fallaba si todos eran negativos (devolvía 0).
+ *    Corrección: let max = array[0];
+ *
+ * 4) Línea 47 (código original) — tipo: EJECUCIÓN
+ *    Error: array.length() → TypeError (length no es un método).
+ *    Corrección: array.length
+ */
+
 function sumar(array) {
-  let total = "";
-  for (let i = 1; i <= array.length; i++) {
+  let total = 0;
+  for (let i = 0; i < array.length; i++) {
     total += array[i];
   }
   return total;
 }
 
 function maximo(array) {
-  let max = 0;
+  let max = array[0];
   for (let i = 0; i < array.length; i++) {
     if (array[i] > max) {
       max = array[i];
@@ -44,7 +64,7 @@ function maximo(array) {
 }
 
 function media(array) {
-  return sumar(array) / array.length();
+  return sumar(array) / array.length;
 }
 
 let numeros = [4, -2, 9, 1, 3];
