@@ -23,17 +23,38 @@
 // PISTA: no todos los errores muestran un mensaje en rojo.
 // ============================================================
 
+/*
+ * ERRORES ENCONTRADOS Y CORREGIDOS (4):
+ *
+ * 1) Línea 32 (código original) — tipo: EJECUCIÓN
+ *    Error: notas.lenght (typo) → undefined → media = NaN.
+ *    Corrección: notas.length
+ *
+ * 2) Línea 36 (código original) — tipo: LÓGICA
+ *    Error: resultdo = "APROBADO" crea otra variable; resultado
+ *    seguía en "SUSPENSO" (sin mensaje en rojo).
+ *    Corrección: resultado = "APROBADO"
+ *
+ * 3) Líneas 32 y 39 (código original) — tipo: EJECUCIÓN
+ *    Error: const media y luego media = media.toFixed(2) → TypeError.
+ *    Corrección: declarar media con let.
+ *
+ * 4) Líneas 47-48 (código original) — tipo: LÓGICA
+ *    Error: argumentos al revés (notas, nombre).
+ *    Corrección: crearInforme("Ana", notasAna) y crearInforme("Luis", notasLuis).
+ */
+
 function crearInforme(nombre, notas) {
   let suma = 0;
   for (let i = 0; i < notas.length; i++) {
     suma = suma + notas[i];
   }
 
-  const media = suma / notas.lenght;
+  let media = suma / notas.length;
 
   let resultado = "SUSPENSO";
   if (media >= 5) {
-    resultdo = "APROBADO";
+    resultado = "APROBADO";
   }
 
   media = media.toFixed(2);
@@ -44,8 +65,8 @@ function crearInforme(nombre, notas) {
 let notasAna = [8, 7, 6, 9];
 let notasLuis = [3, 5, 4, 5];
 
-console.log(crearInforme(notasAna, "Ana"));
-console.log(crearInforme(notasLuis, "Luis"));
+console.log(crearInforme("Ana", notasAna));
+console.log(crearInforme("Luis", notasLuis));
 </script>
 </body>
 </html>
